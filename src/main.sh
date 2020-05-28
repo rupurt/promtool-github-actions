@@ -64,16 +64,21 @@ function main {
   scriptDir=$(dirname ${0})
   source ${scriptDir}/promtool_check_rules.sh
   source ${scriptDir}/promtool_check_config.sh
+  source ${scriptDir}/promtool_test_rules.sh
 
   parseInputs
   cd ${GITHUB_WORKSPACE}
 
   case "${promtoolSubcommand}" in
-    config)
+    "check config")
       installPromtool
       promtoolCheckConfig ${*}
       ;;
-    rules)
+    "check rules")
+      installPromtool
+      promtoolCheckRules ${*}
+      ;;
+    "test rules")
       installPromtool
       promtoolCheckRules ${*}
       ;;
